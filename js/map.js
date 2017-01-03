@@ -16,9 +16,9 @@ svg.append("path")
     .attr("class", "graticule")
     .attr("d", path);
 
-d3.json("js/ecuador.json", function(error, ecuador) {
+d3.json("ecuador.json", function(error, ecuador) {
   //https://es.wikipedia.org/wiki/Anexo:Provincias_de_Ecuador_por_IDH
-    d3.json("js/hdi.json", function(error, hdi) {
+    d3.json("hdi.json", function(error, hdi) {
         var land = topojson.feature(ecuador, ecuador.objects.ecuador);
         
         var color = d3.scale.linear()
