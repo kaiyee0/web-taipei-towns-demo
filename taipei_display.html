@@ -101,15 +101,16 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.7.0/d3-legend.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-composite-projections/1.0.1/composite-projections.min.js"></script>
-
-<script src="https://rawgit.com/rveciana/d3-composite-projections/v0.4.0/mercatorEcuador-proj.min.js"></script>
+<!-- <script src="js/getCompo_try.js.js"></script> -->
 <script>
 
-var width = 700,
-    height = 580;
+var width = 900,
+    height = 650;
 
-var projection = d3.geo.mercator().scale(100000).center([121.63,25.11]);//need to be revised
+var projection = d3.geo.mercator().scale(110000).center([121.58,25.11]);//need to be revised
+
+//var projection = d3.geo.mercatorTaipei();//need to be revised
+
 var graticule = d3.geo.graticule().step([2, 2]);//about lines
 
 var path = d3.geo.path()
@@ -158,15 +159,11 @@ d3.json("taipei.json", function(error, taipei) {
           .style("opacity", 0);
       });
 
-    svg
-      .append("path")
-        .style("fill","none")
-        .style("stroke","#000")
-        .attr("d", projection.getCompositionBorders());
+
 
     d3.select("svg").append("g")
       .attr("class", "legendLinear")
-      .attr("transform", "translate(0,0)");
+      .attr("transform", "translate(200,580)");
 
     var legendLinear = d3.legend.color()
                 .title("Human Development Index")
@@ -181,6 +178,11 @@ d3.json("taipei.json", function(error, taipei) {
 
     svg.select(".legendLinear")
       .call(legendLinear);
+
+    svg.append("path")
+        .style("fill","none")
+        .style("stroke","#000")
+        .attr("d", projection.getCompositionBorders());
 
 });
 });
