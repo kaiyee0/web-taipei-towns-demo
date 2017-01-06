@@ -91,6 +91,29 @@
     </nav>
 
 
+ <section>
+    喜歡的水果 :
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<input type="checkbox" name="fruit" value="蘋果" checked>蘋果
+<input type="checkbox" name="fruit" value="香蕉">香蕉
+<input type="checkbox" name="fruit" value="櫻桃">櫻桃
+<br>
+<input type="button" name="ok" id="ok" value="確定" onClick="history.go(0)">
+<div id="calsubscribe"></div>
+<!-- <button class="set">SAVE SETTINGS</button>
+ --><br><!-- <code id="code1"><p></p></code> -->
+
+ </section>
+
   <section class="container content-section text-center">
     <div id="container">
         <div id="tooltip">
@@ -104,6 +127,85 @@
 <script src="jquery/jquery.min.js"></script>
 <!-- <script src="js/getCompo_try.js.js"></script> -->
 <script>
+
+var a = 0,
+  b = 0,
+  c = 2;
+var btn = document.getElementById("ok");
+btn.onclick = function() {
+
+  localStorage.clear();
+  var obj = document.getElementsByName("fruit");
+  var selected = [];
+  if (obj[0].checked) {
+    a += 0.2;
+    b += 0.3;
+  }
+  if (obj[1].checked) {
+    a += 0.1;
+    b += 0.5;
+  }
+
+  // SET LOCAL STORAGE BASED IN THIS IF NON EXISTS, OTHERISE USE LOCALSTORAGE UNTIL RESET ON LOGIN. 
+  if (localStorage.getItem("fdsettings") == null) {
+
+    var JSONsettings = [{
+      district: "松山區",
+      id: a
+    }, {
+      district: "信義區",
+      id: b
+    }, {
+      district: "大安區",
+      id: c
+    }];
+    localStorage.setItem("fdsettings", JSON.stringify(JSONsettings));
+    var myjson = JSON.parse(localStorage.getItem("fdsettings"));
+  } else {
+    var myjson = JSON.parse(localStorage.getItem("fdsettings"));
+  }
+
+  if (myjson == null) //If there is no data, initialize an empty array
+    myjson = [];
+
+  $.each(myjson, function(i, v) {
+    var feedname = this.name
+    $("#calsubscribe").append($("<label>")
+      .prepend(
+        $("<input>").attr({
+          'name': 'subscribecal',
+          "data-feed": feedname
+        })
+        .val(this.id)
+        .css('display', 'none')
+      ));
+  });
+
+  $(document).on("click", "button.set", function(e) {
+    var checkValues = $('input[name=subscribecal]').map(function() {
+      //alert(typeof( parseFloat($(this).val())));
+      return {
+        name: $(this).data('feed'),
+        id: parseFloat($(this).val())
+      };
+    }).get();
+    
+  localStorage.setItem("fdsettings", JSON.stringify(checkValues));
+  }); //end click
+
+  var value1 = window.localStorage.getItem("fdsettings");
+  alert(value1);
+
+};
+
+
+  var value1 = window.localStorage.getItem("fdsettings");
+
+
+fs = require('fs');
+fs.writefile('fortry.json', value1, utf-8);
+
+
 
 var width = 900,
     height = 650;
@@ -129,7 +231,13 @@ var svg = d3.select("#container").append("svg")
 
 d3.json("taipei.json", function(error, taipei) {
   //https://es.wikipedia.org/wiki/Anexo:Provincias_de_Ecuador_por_IDH
-  d3.json("taipeicrime.json", function(error, taipeicrime) {
+  
+
+  d3.json("fortry.json", function(error, taipeicrime) {
+  
+
+  //root = JSON.parse( value1 ); //add this line
+
   var land = topojson.feature(taipei, taipei.objects.map);
   
   var color = d3.scale.linear()
@@ -144,7 +252,7 @@ d3.json("taipei.json", function(error, taipei) {
   // };
   //taipeicrime.filter(function(n, i){return n.district===d.properties.name;})
   function find_value_in_district(searching_district){
-   var as = $(taipeicrime).filter(function (i,n){return n.district==searching_district;});
+   var as = $(fortry).filter(function (i,n){return n.district==searching_district;});
    return as[0].id;
   };
 
@@ -154,6 +262,7 @@ d3.json("taipei.json", function(error, taipei) {
       .append("path")
       .attr("d", path)
       .attr("class","name")
+      //.data(value1)
       .style("fill",function(d){return color( find_value_in_district(d.properties.name));})
       .on("mouseover", function(d){
         //Show the tooltip
@@ -164,6 +273,7 @@ d3.json("taipei.json", function(error, taipei) {
           .style("left", x + "px")
           .style("top", y + "px")
           .style("opacity", 1)
+          //.data(value1)
           .text( "The taipeicrime at " + d.properties.name + " is " + find_value_in_district(d.properties.name));
       })
       .on("mouseout", function(){
@@ -192,10 +302,10 @@ d3.json("taipei.json", function(error, taipei) {
     svg.select(".legendLinear")
       .call(legendLinear);
 
-    svg.append("path")
-        .style("fill","none")
-        .style("stroke","#000")
-        .attr("d", projection.getCompositionBorders());
+    // svg.append("path")
+    //     .style("fill","none")
+    //     .style("stroke","#000")
+    //     .attr("d", projection.getCompositionBorders());
 
 });
 });
