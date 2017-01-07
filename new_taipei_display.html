@@ -1,44 +1,106 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-.region{
-  stroke: #000;
-  stroke-width: 0.5px
+.container{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
-.graticule {
-  fill: none;
-  stroke: #777;
-  stroke-width: .5px;
-  stroke-opacity: .5;
-}
-.legendLinear
- {
-  font-family: "Lato";
-  fill:#c2b59b;
-}
-.legendTitle {
-  font-size: 1em;
-}
-#tooltip {
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
   position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  margin: 0;
-  padding: 10px;
-  width: 200px;
-  height: 70px;
-  color: white;
-  font-family: sans-serif;
-  font-size: 1.2em;
-  font-weight: bold;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.55);
-  opacity: 0;
-  pointer-events: none;
-  border-radius:5px;
-  transition: .2s;
+  left: -9999px;
 }
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 75px;
+  cursor: pointer;
+}
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before,
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '';
+  position: absolute;
+}
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  left:0; top: -3px;
+  width: 65px; height: 30px;
+  background: #DDDDDD;
+  border-radius: 15px;
+  transition: background-color .2s;
+}
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  width: 20px; height: 20px;
+  transition: all .2s;
+  border-radius: 50%;
+  background: #7F8C9A;
+  top: 2px; left: 5px;
+}
+
+/* on checked */
+[type="checkbox"]:checked + label:before {
+  background:#34495E; 
+}
+[type="checkbox"]:checked + label:after {
+  background: #39D2B4;
+  top: 2px; left: 40px;
+}
+
+[type="checkbox"]:checked + label .ui,
+[type="checkbox"]:not(:checked) + label .ui:before,
+[type="checkbox"]:checked + label .ui:after {
+  position: absolute;
+  left: 6px;
+  width: 65px;
+  border-radius: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 22px;
+  transition: all .2s;
+}
+[type="checkbox"]:not(:checked) + label .ui:before {
+  content: "no";
+  left: 32px
+}
+[type="checkbox"]:checked + label .ui:after {
+  content: "yes";
+  color: #39D2B4;
+}
+[type="checkbox"]:focus + label:before {
+  border: 1px dashed #777;
+  box-sizing: border-box;
+  margin-top: -1px;
+}
+
+/* Useless styles, just for demo styles */
+
+body {
+  font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
+  color: #7F8C9A;
+}
+h1, h2 {
+  margin-bottom: 5px;
+  font-weight: normal;
+  text-align: center;
+  color:#aaa;
+}
+h2 {
+  margin: 5px 0 2em;
+  color: #1ABC9C;
+}
+form {
+  width: 150px;
+  margin: 0 auto;
+  /*display: inline-block;*/
+}
+h2 + P {
+  text-align: center;
+}
+
 
 </style>
 <head>
@@ -90,225 +152,308 @@
         </div>
     </nav>
 
-
- <section>
-    喜歡的水果 :
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<input type="checkbox" name="fruit" value="蘋果" checked>蘋果
-<input type="checkbox" name="fruit" value="香蕉">香蕉
-<input type="checkbox" name="fruit" value="櫻桃">櫻桃
-<br>
-<input type="button" name="ok" id="ok" value="確定" onClick="history.go(0)">
-<div id="calsubscribe"></div>
-<!-- <button class="set">SAVE SETTINGS</button>
- --><br><!-- <code id="code1"><p></p></code> -->
-
- </section>
-
-  <section class="container content-section text-center">
+  
+  <section class="container content-section">
     <div id="container">
-        <div id="tooltip">
-        </div>
+    <br>
+    <br>
+      <h2>What would you like to investigate</h2>
+
+    <form action="#" class="col-md-3 col-md-offset-2">
+      <p><input type="checkbox" name="disaster" id="test1" unchecked/><label for="test1"><span class="ui"></span>殺人案</label></p>
+      <p><input type="checkbox" name="disaster" id="test2" unchecked/><label for="test2"><span class="ui"></span>強盜案</label></p>
+      <p><input type="checkbox" name="disaster" id="test3" unchecked/><label for="test3"><span class="ui"></span>強制性交</label></p>
+    </form>
+
+    <form action="#" class="col-md-3">
+      <p><input type="checkbox" name="disaster" id="test4" unchecked/><label for="test4"><span class="ui"></span>毒品案</label></p>
+      <p><input type="checkbox" name="disaster" id="test5" unchecked/><label for="test5"><span class="ui"></span>竊盜案</label></p>
+      <p><input type="checkbox" name="disaster" id="test6" unchecked/><label for="test6"><span class="ui"></span>交通事故</label></p>
+    </form>
+
+    <form action="#" class="col-md-3">
+      <p><input type="checkbox" name="disaster" id="test7" unchecked/><label for="test7"><span class="ui"></span>傳染病</label></p>
+      <p><input type="checkbox" name="disaster" id="test8" unchecked/><label for="test8"><span class="ui"></span>婦幼被害案</label></p>
+      <p><input type="checkbox" name="disaster" id="test9" unchecked onclick="check_all(this,'disaster')"/><label for="test9"><span class="ui"></span>全選</label></p>
+    </form>
+
+
     </div>
   </section>
+
+
+  <section class="container content-section text-center">
+  <div id="container">
+
+<!--     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3><strong style="font-family:DFKai-sb;">想要調查的案件 :</strong></h3> 
+    <br>
+
+    <input type="checkbox" name="disaster" value="殺人案" class="slide" unchecked>殺人案
+    <input type="checkbox" name="disaster" value="強盜案" class="slide" unchecked>強盜案
+    <input type="checkbox" name="disaster" value="強制性交" class="slide" unchecked>強制性交
+    <br>
+    <input type="checkbox" name="disaster" value="毒品案" class="slide" unchecked>毒品案
+    <input type="checkbox" name="disaster" value="竊盜案" class="slide" unchecked>竊盜案
+    <input type="checkbox" name="disaster" value="交通事故" class="slide" unchecked>交通事故
+
+        <br>
+
+    <input type="checkbox" name="disaster" value="傳染病" class="slide" unchecked/>傳染病
+    <input type="checkbox" name="disaster" value="婦幼被害案" class="slide" unchecked/>婦幼被害案
+    <input type="checkbox" name="disaster" value="火災" class="slide" unchecked/>火災
+
+    <br> -->
+    <a href="show.html" target="_blank" class="btn btn-default btn-lg" id="ok">
+    Go</a>
+    <!-- <a href="show.html" target="_blank">
+       <input type="button" value="Show the graph" />
+    </a> -->
+    <!-- <a href="show.html" target="_blank" class="btn btn-default btn-lg">
+    Show the graph</a> -->
+
+    <a target="_blank" class="btn btn-default btn-lg" onClick="history.go(0)">
+    Refresh</a>
+
+    <!--<INPUT TYPE="button" onClick="history.go(0)" VALUE="Refresh">-->    
+    <!--<div id="calsubscribe"></div>-->
+    <!-- <button class="set">SAVE SETTINGS</button>-->
+    <!-- <code id="code1"><p></p></code> -->
+    </div>
+    <br>
+    <p> Reminder : If you're about to update the data you'd already put in,<br> Click the Refrsh button first.Tks.<br><br> With Best Regards, &nbsp&nbsp<i class="fa fa-simplybuilt" aria-hidden="true"></i>Dark X Taipei</p>
+ </section>
+
+
+
   
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.7.0/d3-legend.min.js"></script>
 <script src="jquery/jquery.min.js"></script>
 <!-- <script src="js/getCompo_try.js.js"></script> -->
 <script>
 
+  function check_all(obj,cName) 
+  { 
+      var checkboxs = document.getElementsByName(cName); 
+      for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;} 
+  } 
+
 var a = 0,
   b = 0,
-  c = 2;
+  c = 0, 
+  d = 0, 
+  e = 0, 
+  f = 0, 
+  g = 0, 
+  h = 0, 
+  i = 0, 
+  j = 0, 
+  k = 0, 
+  l = 0, 
+  sum = 0;
 var btn = document.getElementById("ok");
 btn.onclick = function() {
 
   localStorage.clear();
-  var obj = document.getElementsByName("fruit");
+  var obj = document.getElementsByName("disaster");
   var selected = [];
   if (obj[0].checked) {
-    a += 0.2;
-    b += 0.3;
+    a += 0.0556;
+    b += 0.0139;
+    c += 0.0833;
+    d += 0;
+    e += 0.1806;
+    f += 0.0972;
+    g += 0.1667;
+    h += 0.0833;
+    i += 0.0694;
+    j += 0.0417;
+    k += 0.0972;
+    l += 0.1111;
+    sum += 1;
   }
+
   if (obj[1].checked) {
-    a += 0.1;
-    b += 0.5;
+    a += 0;
+    b += 0.0238;
+    c += 0.1429;
+    d += 0.0714;
+    e += 0.2619;
+    f += 0.0952;
+    g += 0.2143;
+    h += 0.0238;
+    i += 0;
+    j += 0.0476;
+    k += 0.0476;
+    l += 0.0714;
+    sum += 1;
   }
 
-  // SET LOCAL STORAGE BASED IN THIS IF NON EXISTS, OTHERISE USE LOCALSTORAGE UNTIL RESET ON LOGIN. 
-  if (localStorage.getItem("fdsettings") == null) {
-
-    var JSONsettings = [{
-      district: "松山區",
-      id: a
-    }, {
-      district: "信義區",
-      id: b
-    }, {
-      district: "大安區",
-      id: c
-    }];
-    localStorage.setItem("fdsettings", JSON.stringify(JSONsettings));
-    var myjson = JSON.parse(localStorage.getItem("fdsettings"));
-  } else {
-    var myjson = JSON.parse(localStorage.getItem("fdsettings"));
+  if (obj[2].checked) {
+    a += 0.1864;
+    b += 0.0847;
+    c += 0.0677;
+    d += 0.0338;
+    e += 0.1016;
+    f += 0.0338;
+    g += 0.1186;
+    h += 0.0238;
+    i += 0.0508;
+    j += 0.0677;
+    k += 0.1186;
+    l += 0.0338;
+    sum += 1;
   }
 
-  if (myjson == null) //If there is no data, initialize an empty array
-    myjson = [];
+  if (obj[3].checked) {
+    a += 0.056;
+    b += 0.056; 
+    c += 0.071;
+    d += 0.255;
+    e += 0.048;
+    f += 0.082;
+    g += 0.166;
+    h += 0.062;
+    i += 0.039;
+    j += 0.046;
+    k += 0.068;
+    l += 0.05;
+    sum += 1;
+  }
 
-  $.each(myjson, function(i, v) {
-    var feedname = this.name
-    $("#calsubscribe").append($("<label>")
-      .prepend(
-        $("<input>").attr({
-          'name': 'subscribecal',
-          "data-feed": feedname
-        })
-        .val(this.id)
-        .css('display', 'none')
-      ));
-  });
+  if (obj[4].checked) {   
+    a +=  0.069;
+    b +=  0.081;
+    c +=  0.078;
+    d +=  0.095;
+    e +=  0.106;
+    f +=  0.103;
+    g +=  0.090;
+    h +=  0.060;
+    i +=  0.112;
+    j +=  0.052;
+    k +=  0.060;
+    l +=  0.094;
+    sum += 1; 
+  }
 
-  $(document).on("click", "button.set", function(e) {
-    var checkValues = $('input[name=subscribecal]').map(function() {
-      //alert(typeof( parseFloat($(this).val())));
-      return {
-        name: $(this).data('feed'),
-        id: parseFloat($(this).val())
-      };
-    }).get();
-    
-  localStorage.setItem("fdsettings", JSON.stringify(checkValues));
-  }); //end click
+  if (obj[5].checked) {
+    a += 0.06;
+    b += 0.1; 
+    c += 0.08;
+    d += 0.09;
+    e += 0.13;
+    f += 0.06;
+    g += 0.06;
+    h += 0.1;
+    i += 0.04;
+    j += 0.08;
+    k += 0.08;
+    l += 0.11;
+    sum += 1;
+  }
 
-  var value1 = window.localStorage.getItem("fdsettings");
-  alert(value1);
+  if (obj[6].checked) {
+    a += 0.06;
+    b += 0.1; 
+    c += 0.11;
+    d += 0.06;
+    e += 0.1291;
+    f += 0.06;
+    g += 0.11;
+    h += 0.08;
+    i += 0.04;
+    j += 0.07;
+    k += 0.1066;
+    l += 0.06;
+    sum += 1;
+  }
 
+  if (obj[7].checked) {   
+    a +=  0;
+    b +=  0.063;
+    c +=  0.046;
+    d +=  0.189;
+    e +=  0.541;
+    f +=  0.111;
+    g +=  0;
+    h +=  0;
+    i +=  0;
+    j +=  0.050;
+    k +=  0;
+    l +=  0;
+    sum += 1;
+  }
+
+
+
+  a = a / sum;
+  b = b / sum;
+  c = c / sum;
+  d = d / sum;
+  e = e / sum;
+  f = f / sum;
+  g = g / sum;
+  h = h / sum;
+  i = i / sum;
+  j = j / sum;
+  k = k / sum;
+  l = l / sum;
+
+  var mean = (a+b+c+d+e+f+g+h+i+j+k+l) / 12;
+  localStorage.setItem("mean", mean);
+
+
+  var JSONsettings = [{
+    district: "松山區",
+    id: a
+  }, {
+    district: "信義區",
+    id: b
+  }, {
+    district: "大安區",
+    id: c
+  }, {
+    district: "中正區",
+    id: d
+  }, {
+    district: "中山區",
+    id: e
+  }, {
+    district: "大同區",
+    id: f
+  }, {
+    district: "萬華區",
+    id: g
+  }, {
+    district: "文山區",
+    id: h
+  }, {
+    district: "南港區",
+    id: i
+  }, {
+    district: "內湖區",
+    id: j
+  }, {
+    district: "士林區",
+    id: k
+  }, {
+    district: "北投區",
+    id: l
+  }];
+  localStorage.setItem("fdsettings", JSON.stringify(JSONsettings));
+  var myjson = JSON.parse(localStorage.getItem("fdsettings"));
+  
+
+  // var value1 = window.localStorage.getItem("fdsettings");
+  // alert(value1);
 };
 
-
-  var value1 = window.localStorage.getItem("fdsettings");
-
-
-fs = require('fs');
-fs.writefile('fortry.json', value1, utf-8);
-
-
-
-var width = 900,
-    height = 650;
-
-var projection = d3.geo.mercator().scale(110000).center([121.58,25.11]);//need to be revised
-
-//var projection = d3.geo.mercatorTaipei();//need to be revised
-
-var graticule = d3.geo.graticule().step([2, 2]);//about lines
-
-var path = d3.geo.path()
-    .projection(projection);
-
-var svg = d3.select("#container").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-
-    svg.append("path")
-        .datum(graticule)
-        .attr("class", "graticule")
-        .attr("d", path);
-
-d3.json("taipei.json", function(error, taipei) {
-  //https://es.wikipedia.org/wiki/Anexo:Provincias_de_Ecuador_por_IDH
-  
-
-  d3.json("fortry.json", function(error, taipeicrime) {
-  
-
-  //root = JSON.parse( value1 ); //add this line
-
-  var land = topojson.feature(taipei, taipei.objects.map);
-  
-  var color = d3.scale.linear()
-              .domain([0.7, 0.9])
-              .range(["#feebe2","#7a0177"]);
-
-  // function find_value_in_district(searching_district){
-  //   var disaster_value;
-  //   var my_object = JSON.parse(taipeicrime);
-  //   disaster_value = my_object.filter(function(n,i){return my_object.district===searching_district;})
-  //   return disaster_value.id;
-  // };
-  //taipeicrime.filter(function(n, i){return n.district===d.properties.name;})
-  function find_value_in_district(searching_district){
-   var as = $(fortry).filter(function (i,n){return n.district==searching_district;});
-   return as[0].id;
-  };
-
-    svg.selectAll(".name")
-      .data(land.features)
-      .enter()
-      .append("path")
-      .attr("d", path)
-      .attr("class","name")
-      //.data(value1)
-      .style("fill",function(d){return color( find_value_in_district(d.properties.name));})
-      .on("mouseover", function(d){
-        //Show the tooltip
-        var x = d3.event.pageX;
-        var y = d3.event.pageY - 40;
-
-        d3.select("#tooltip")
-          .style("left", x + "px")
-          .style("top", y + "px")
-          .style("opacity", 1)
-          //.data(value1)
-          .text( "The taipeicrime at " + d.properties.name + " is " + find_value_in_district(d.properties.name));
-      })
-      .on("mouseout", function(){
-        //Hide the tooltip
-        d3.select("#tooltip")
-          .style("opacity", 0);
-      });
-
-
-
-    d3.select("svg").append("g")
-      .attr("class", "legendLinear")
-      .attr("transform", "translate(200,580)");
-
-    var legendLinear = d3.legend.color()
-                .title("Crime Committed Index")
-                .shapeHeight(20)
-                .shapeWidth(60)
-                .shapeRadius(10)
-                .cells([0.7, 0.75, 0.8, 0.85, 0.9])
-                .orient("horizontal")
-                .labelFormat(d3.format(".02f"))
-                .labelAlign("start")
-                .scale(color);
-
-    svg.select(".legendLinear")
-      .call(legendLinear);
-
-    // svg.append("path")
-    //     .style("fill","none")
-    //     .style("stroke","#000")
-    //     .attr("d", projection.getCompositionBorders());
-
-});
-});
 
 
 </script>
