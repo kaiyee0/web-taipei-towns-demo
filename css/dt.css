@@ -334,6 +334,19 @@ body {
   bottom: 5px;
   right: 5px;
 }
+
+#to-former {
+  position: fixed;
+  bottom: 5px;
+  left: : 5px;
+}
+
+#to-new {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+}
+
 hr.small {
     max-width: 100px;
 }

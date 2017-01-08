@@ -1,108 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style>
-.container{
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
 
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
-  position: absolute;
-  left: -9999px;
-}
-[type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label {
-  position: relative;
-  padding-left: 75px;
-  cursor: pointer;
-}
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before,
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  content: '';
-  position: absolute;
-}
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
-  left:0; top: -3px;
-  width: 65px; height: 30px;
-  background: #DDDDDD;
-  border-radius: 15px;
-  transition: background-color .2s;
-}
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  width: 20px; height: 20px;
-  transition: all .2s;
-  border-radius: 50%;
-  background: #7F8C9A;
-  top: 2px; left: 5px;
-}
-
-/* on checked */
-[type="checkbox"]:checked + label:before {
-  background:#34495E; 
-}
-[type="checkbox"]:checked + label:after {
-  background: #39D2B4;
-  top: 2px; left: 40px;
-}
-
-[type="checkbox"]:checked + label .ui,
-[type="checkbox"]:not(:checked) + label .ui:before,
-[type="checkbox"]:checked + label .ui:after {
-  position: absolute;
-  left: 6px;
-  width: 65px;
-  border-radius: 15px;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 22px;
-  transition: all .2s;
-}
-[type="checkbox"]:not(:checked) + label .ui:before {
-  content: "no";
-  left: 32px
-}
-[type="checkbox"]:checked + label .ui:after {
-  content: "yes";
-  color: #39D2B4;
-}
-[type="checkbox"]:focus + label:before {
-  border: 1px dashed #777;
-  box-sizing: border-box;
-  margin-top: -1px;
-}
-
-/* Useless styles, just for demo styles */
-
-body {
-  font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
-  color: #7F8C9A;
-}
-h1, h2 {
-  margin-bottom: 5px;
-  font-weight: normal;
-  text-align: center;
-  color:#aaa;
-}
-h2 {
-  margin: 5px 0 2em;
-  color: #1ABC9C;
-}
-form {
-  width: 150px;
-  margin: 0 auto;
-  /*display: inline-block;*/
-}
-h2 + P {
-  text-align: center;
-}
-
-
-</style>
 <head>
    <meta charset="utf-8">
 
@@ -124,10 +22,10 @@ h2 + P {
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Theme CSS -->
+    <link href="css/new_taipei_display.css" rel="stylesheet">
     <link href="css/dt.css" rel="stylesheet">
 </head>
 
-<body>
 
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -147,7 +45,7 @@ h2 + P {
 
             
             <div class="nav navbar-custom navbar-right">
-                <marquee scrollamount = 5 behavior="scroll">Have any question? Let us Know~~ <a href="index.html#contact" class="btn btn-light btn-default">Contact us </marquee>
+                <marquee scrollamount = 5 behavior="scroll">Have any question? Let us Know~~ <a href="index.html#contact" class="btn btn-light btn-default">Contact us</a> </marquee>
             </div>
         </div>
     </nav>
@@ -177,284 +75,23 @@ h2 + P {
       <p><input type="checkbox" name="disaster" id="test9" unchecked onclick="check_all(this,'disaster')"/><label for="test9"><span class="ui"></span>全選</label></p>
     </form>
 
-
     </div>
   </section>
 
 
   <section class="container content-section text-center">
   <div id="container">
-
-<!--     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h3><strong style="font-family:DFKai-sb;">想要調查的案件 :</strong></h3> 
-    <br>
-
-    <input type="checkbox" name="disaster" value="殺人案" class="slide" unchecked>殺人案
-    <input type="checkbox" name="disaster" value="強盜案" class="slide" unchecked>強盜案
-    <input type="checkbox" name="disaster" value="強制性交" class="slide" unchecked>強制性交
-    <br>
-    <input type="checkbox" name="disaster" value="毒品案" class="slide" unchecked>毒品案
-    <input type="checkbox" name="disaster" value="竊盜案" class="slide" unchecked>竊盜案
-    <input type="checkbox" name="disaster" value="交通事故" class="slide" unchecked>交通事故
-
-        <br>
-
-    <input type="checkbox" name="disaster" value="傳染病" class="slide" unchecked/>傳染病
-    <input type="checkbox" name="disaster" value="婦幼被害案" class="slide" unchecked/>婦幼被害案
-    <input type="checkbox" name="disaster" value="火災" class="slide" unchecked/>火災
-
-    <br> -->
-    <a href="show.html" target="_blank" class="btn btn-default btn-lg" id="ok">
-    Go</a>
-    <!-- <a href="show.html" target="_blank">
-       <input type="button" value="Show the graph" />
-    </a> -->
-    <!-- <a href="show.html" target="_blank" class="btn btn-default btn-lg">
-    Show the graph</a> -->
-
-    <a target="_blank" class="btn btn-default btn-lg" onClick="history.go(0)">
-    Refresh</a>
-
-    <!--<INPUT TYPE="button" onClick="history.go(0)" VALUE="Refresh">-->    
-    <!--<div id="calsubscribe"></div>-->
-    <!-- <button class="set">SAVE SETTINGS</button>-->
-    <!-- <code id="code1"><p></p></code> -->
+    <a href="show.html" class="btn btn-default btn-lg" id="ok">Go</a>
+    <a target="_blank" class="btn btn-default btn-lg" onClick="history.go(0)">Refresh</a>
     </div>
     <br>
     <p> Reminder : If you're about to update the data you'd already put in,<br> Click the Refrsh button first.Tks.<br><br> With Best Regards, &nbsp&nbsp<i class="fa fa-simplybuilt" aria-hidden="true"></i>Dark X Taipei</p>
- </section>
-
-
-
+  </section> 
   
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
-<script src="jquery/jquery.min.js"></script>
-<!-- <script src="js/getCompo_try.js.js"></script> -->
-<script>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <script src="jquery/jquery.min.js"></script>
+  <!-- <script src="js/getCompo_try.js.js"></script> -->
+  <script src="js/new_taipei_display.js"></script>
 
-  function check_all(obj,cName) 
-  { 
-      var checkboxs = document.getElementsByName(cName); 
-      for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;} 
-  } 
-
-var a = 0,
-  b = 0,
-  c = 0, 
-  d = 0, 
-  e = 0, 
-  f = 0, 
-  g = 0, 
-  h = 0, 
-  i = 0, 
-  j = 0, 
-  k = 0, 
-  l = 0, 
-  sum = 0;
-var btn = document.getElementById("ok");
-btn.onclick = function() {
-
-  localStorage.clear();
-  var obj = document.getElementsByName("disaster");
-  var selected = [];
-  if (obj[0].checked) {
-    a += 0.0556;
-    b += 0.0139;
-    c += 0.0833;
-    d += 0;
-    e += 0.1806;
-    f += 0.0972;
-    g += 0.1667;
-    h += 0.0833;
-    i += 0.0694;
-    j += 0.0417;
-    k += 0.0972;
-    l += 0.1111;
-    sum += 1;
-  }
-
-  if (obj[1].checked) {
-    a += 0;
-    b += 0.0238;
-    c += 0.1429;
-    d += 0.0714;
-    e += 0.2619;
-    f += 0.0952;
-    g += 0.2143;
-    h += 0.0238;
-    i += 0;
-    j += 0.0476;
-    k += 0.0476;
-    l += 0.0714;
-    sum += 1;
-  }
-
-  if (obj[2].checked) {
-    a += 0.1864;
-    b += 0.0847;
-    c += 0.0677;
-    d += 0.0338;
-    e += 0.1016;
-    f += 0.0338;
-    g += 0.1186;
-    h += 0.0238;
-    i += 0.0508;
-    j += 0.0677;
-    k += 0.1186;
-    l += 0.0338;
-    sum += 1;
-  }
-
-  if (obj[3].checked) {
-    a += 0.056;
-    b += 0.056; 
-    c += 0.071;
-    d += 0.255;
-    e += 0.048;
-    f += 0.082;
-    g += 0.166;
-    h += 0.062;
-    i += 0.039;
-    j += 0.046;
-    k += 0.068;
-    l += 0.05;
-    sum += 1;
-  }
-
-  if (obj[4].checked) {   
-    a +=  0.069;
-    b +=  0.081;
-    c +=  0.078;
-    d +=  0.095;
-    e +=  0.106;
-    f +=  0.103;
-    g +=  0.090;
-    h +=  0.060;
-    i +=  0.112;
-    j +=  0.052;
-    k +=  0.060;
-    l +=  0.094;
-    sum += 1; 
-  }
-
-  if (obj[5].checked) {
-    a += 0.06;
-    b += 0.1; 
-    c += 0.08;
-    d += 0.09;
-    e += 0.13;
-    f += 0.06;
-    g += 0.06;
-    h += 0.1;
-    i += 0.04;
-    j += 0.08;
-    k += 0.08;
-    l += 0.11;
-    sum += 1;
-  }
-
-  if (obj[6].checked) {
-    a += 0.06;
-    b += 0.1; 
-    c += 0.11;
-    d += 0.06;
-    e += 0.1291;
-    f += 0.06;
-    g += 0.11;
-    h += 0.08;
-    i += 0.04;
-    j += 0.07;
-    k += 0.1066;
-    l += 0.06;
-    sum += 1;
-  }
-
-  if (obj[7].checked) {   
-    a +=  0;
-    b +=  0.063;
-    c +=  0.046;
-    d +=  0.189;
-    e +=  0.541;
-    f +=  0.111;
-    g +=  0;
-    h +=  0;
-    i +=  0;
-    j +=  0.050;
-    k +=  0;
-    l +=  0;
-    sum += 1;
-  }
-
-
-
-  a = a / sum;
-  b = b / sum;
-  c = c / sum;
-  d = d / sum;
-  e = e / sum;
-  f = f / sum;
-  g = g / sum;
-  h = h / sum;
-  i = i / sum;
-  j = j / sum;
-  k = k / sum;
-  l = l / sum;
-
-  var mean = (a+b+c+d+e+f+g+h+i+j+k+l) / 12;
-  localStorage.setItem("mean", mean);
-
-
-  var JSONsettings = [{
-    district: "松山區",
-    id: a
-  }, {
-    district: "信義區",
-    id: b
-  }, {
-    district: "大安區",
-    id: c
-  }, {
-    district: "中正區",
-    id: d
-  }, {
-    district: "中山區",
-    id: e
-  }, {
-    district: "大同區",
-    id: f
-  }, {
-    district: "萬華區",
-    id: g
-  }, {
-    district: "文山區",
-    id: h
-  }, {
-    district: "南港區",
-    id: i
-  }, {
-    district: "內湖區",
-    id: j
-  }, {
-    district: "士林區",
-    id: k
-  }, {
-    district: "北投區",
-    id: l
-  }];
-  localStorage.setItem("fdsettings", JSON.stringify(JSONsettings));
-  var myjson = JSON.parse(localStorage.getItem("fdsettings"));
-  
-  alert("You should enable \" load unsafe script \" to show the d3image.");
-
-  // var value1 = window.localStorage.getItem("fdsettings");
-  // alert(value1);
-};
-
-
-
-</script>
+</body>
