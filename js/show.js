@@ -1,4 +1,3 @@
-
 var value1 = window.localStorage.getItem("fdsettings");
 var value2 = JSON.parse(value1);
 
