@@ -423,3 +423,10 @@ section{
 .members {
   padding-top: 100px;
 }
+
+
+@media (max-width: 767px) {
+  #intro div {
+    overflow: auto;
+  }
+}
